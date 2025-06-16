@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JP MotorHub</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo-title">
+            <img src="logo.png" alt="JP Auto Hub Logo" class="logo-img" />
+            <h1 class="site-title">JP AutoHub</h1>
+        </div>
+
+
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="vehicles.html">Vehicles</a>
+            <a href="Contact.html">Contact</a>
+            <!-- You can update this when we build the Contact page -->
+        </nav>
+
+    </header>
+
+    <!-- ✅ Hero with Slide Show -->
+    <section class="hero" id="heroSection">
+        <div class="slide active">
+            <h1>Welcome to <span>JP AutoHub</span></h1>
+            <p>Your Trusted Car Dealership</p>
+            <a href="#vehicles" class="btn">Explore Cars</a>
+        </div>
+        <div class="slide">
+            <h2>Discover Premium <span>Vehicles</span></h2>
+            <p>Luxury, Comfort, and Power</p>
+            <a href="vehicles.html" class="btn">View Our Collection</a>
+        </div>
+        <div class="slide">
+            <h2>Find Your <span>Perfect Ride</span></h2>
+            <p>Handpicked Cars for You</p>
+            <a href="#vehicles" class="btn">Browse Now</a>
+        </div>
+    </section>
+
+    <!-- 🚗 Filters Section -->
+    <section class="filters-section">
+        <input type="text" id="searchInput" placeholder="Search by model or name..." />
+        <select id="categoryFilter">
+      <option value="all">All Categories</option>
+      <option value="SUV">SUV</option>
+      <option value="Hatchback">Hatchback</option>
+      <option value="Sedan">Sedan</option>
+    </select>
+
+        <select id="priceFilter">
+      <option value="all">All Prices</option>
+      <option value="below1m">Below 1M</option>
+      <option value="1to2m">1M - 2M</option>
+      <option value="above2m">Above 2M</option>
+    </select>
+    </section>
+
+    <section id="vehicles" class="vehicles-section">
+        <h2>Featured Cars</h2>
+        <div class="vehicles-grid" id="vehiclesGrid">
+
+            <div class="vehicle-card" data-index="0">
+                <img src="car1.jpg" alt="Toyota Land Cruiser" />
+                <h3 class="vehicle-name">Toyota Land Cruiser</h3>
+                <p>Ksh 5,000,000</p>
+                <button class="btn view-details">View Details</button>
+            </div>
+
+            <div class="vehicle-card" data-index="1">
+                <img src="car2.jpg" alt="Mazda Demio" />
+                <h3 class="vehicle-name">Mazda Demio</h3>
+                <p>Ksh 850,000</p>
+                <button class="btn view-details">View Details</button>
+            </div>
+
+            <div class="vehicle-card" data-index="2">
+                <img src="car3.jpg" alt="Subaru Forester" />
+                <h3 class="vehicle-name">Subaru Forester</h3>
+                <p>Ksh 1,800,000</p>
+                <button class="btn view-details">View Details</button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 JP AutoHub. All Rights Reserved.</p>
+    </footer>
+
+    <!-- 🚗 Modal for View Details -->
+    <div class="modal" id="vehicleModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+
+            <div class="modal-slideshow" id="modalSlideshow">
+                <!-- Slides will be injected by JS -->
+            </div>
+
+            <div class="modal-dots" id="modalDots">
+                <!-- Dots will be injected by JS -->
+            </div>
+
+            <h2 id="modalTitle"></h2>
+            <p id="modalPrice"></p>
+            <p id="modalDescription"></p>
+        </div>
+    </div>
+
+    <!-- ✅ Scripts (JS) -->
+    <script>
+        const vehicles = [{
+            name: "Toyota Land Cruiser",
+            price: "Ksh 5,000,000",
+            description: "A luxury SUV with premium features and off-road capability.",
+            images: ["car1.jpg", "car1-2.jpg", "car1-3.jpg"]
+        }, {
+            name: "Mazda Demio",
+            price: "Ksh 850,000",
+            description: "A compact, fuel-efficient hatchback ideal for city driving.",
+            images: ["car2.jpg", "car2-2.jpg", "car2-3.jpg"]
+        }, {
+            name: "Subaru Forester",
+            price: "Ksh 1,800,000",
+            description: "A reliable crossover SUV with all-wheel drive and spacious interior.",
+            images: ["car3.jpg", "car3-2.jpg", "car3-3.jpg"]
+        }];
+
+        const modal = document.getElementById("vehicleModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalPrice = document.getElementById("modalPrice");
+        const modalDescription = document.getElementById("modalDescription");
+        const modalSlideshow = document.getElementById("modalSlideshow");
+        const modalDots = document.getElementById("modalDots");
+        let currentSlideIndex = 0;
+
+        document.querySelectorAll('.view-details').forEach((btn, index) => {
+            btn.addEventListener('click', () => openModal(index));
+        });
+
+        document.getElementById("closeModal").addEventListener('click', () => {
+            modal.style.display = 'none';
+            modalSlideshow.innerHTML = '';
+            modalDots.innerHTML = '';
+        });
+
+        function openModal(index) {
+            const vehicle = vehicles[index];
+            modalTitle.textContent = vehicle.name;
+            modalPrice.textContent = vehicle.price;
+            modalDescription.textContent = vehicle.description;
+
+            modalSlideshow.innerHTML = '';
+            modalDots.innerHTML = '';
+            currentSlideIndex = 0;
+
+            vehicle.images.forEach((img, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'modal-slide';
+                slide.style.display = 'none';
+                slide.innerHTML = `<img src="${img}" alt="${vehicle.name} ${i + 1}" />`;
+                modalSlideshow.appendChild(slide);
+
+                const dot = document.createElement('span');
+                dot.className = 'modal-dot';
+                dot.addEventListener('click', () => showSlide(i));
+                modalDots.appendChild(dot);
+            });
+
+            showSlide(0);
+            modal.style.display = 'flex';
+        }
+
+        function showSlide(n) {
+            const slides = modalSlideshow.querySelectorAll('.modal-slide');
+            const dots = modalDots.querySelectorAll('.modal-dot');
+            if (n >= slides.length) n = 0;
+            if (n < 0) n = slides.length - 1;
+            currentSlideIndex = n;
+
+            slides.forEach(s => s.style.display = 'none');
+            dots.forEach(d => d.classList.remove('active'));
+
+            slides[n].style.display = 'block';
+            dots[n].classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

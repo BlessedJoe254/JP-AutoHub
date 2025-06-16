@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Vehicles - JP AutoHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo-title">
+            <img src="logo.png" alt="JP AutoHub Logo" class="logo-img" />
+            <h1 class="site-title">JP AutoHub</h1>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="vehicles.html">Vehicles</a>
+            <a href="Contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>All Our Vehicles</h1>
+        <p>Browse our full collection of premium cars.</p>
+    </section>
+
+    <!-- ✅ Filters -->
+    <section class="filters-section">
+        <input type="text" id="searchInput" placeholder="Search by name or model..." />
+        <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="SUV">SUV</option>
+            <option value="Hatchback">Hatchback</option>
+            <option value="Sedan">Sedan</option>
+        </select>
+        <select id="priceFilter">
+            <option value="all">All Prices</option>
+            <option value="below1m">Below 1M</option>
+            <option value="1to2m">1M - 2M</option>
+            <option value="above2m">Above 2M</option>
+        </select>
+    </section>
+
+    <!-- ✅ Vehicles Grid -->
+    <section class="vehicles-section">
+        <div class="vehicles-grid" id="vehiclesGrid">
+            <div class="vehicle-card" data-category="SUV" data-price="above2m" data-name="Toyota Land Cruiser" data-description="Luxury SUV with premium features and off-road capability." data-img="car1.jpg,car1b.jpg,car1c.jpg">
+                <img src="car1.jpg" alt="Toyota Land Cruiser" />
+                <h3 class="vehicle-name">Toyota Land Cruiser</h3>
+                <p>Ksh 5,000,000</p>
+                <button class="btn view-details">View Details</button>
+            </div>
+
+            <div class="vehicle-card" data-category="Hatchback" data-price="below1m" data-name="Mazda Demio" data-description="Fuel-efficient hatchback ideal for city driving." data-img="car2.jpg,car2b.jpg,car2c.jpg">
+                <img src="car2.jpg" alt="Mazda Demio" />
+                <h3 class="vehicle-name">Mazda Demio</h3>
+                <p>Ksh 850,000</p>
+                <button class="btn view-details">View Details</button>
+            </div>
+
+            <div class="vehicle-card" data-category="SUV" data-price="1to2m" data-name="Subaru Forester" data-description="Reliable crossover SUV with all-wheel drive." data-img="car3.jpg,car3b.jpg,car3c.jpg">
+                <img src="car3.jpg" alt="Subaru Forester" />
+                <h3 class="vehicle-name">Subaru Forester</h3>
+                <p>Ksh 1,800,000</p>
+                <button class="btn view-details">View Details</button>
+            </div>
+
+            <div class="vehicle-card" data-category="Sedan" data-price="1to2m" data-name="Toyota Premio" data-description="Comfortable sedan suitable for family and executive use." data-img="car4.jpg,car4b.jpg,car4c.jpg">
+                <img src="car4.jpg" alt="Toyota Premio" />
+                <h3 class="vehicle-name">Toyota Premio</h3>
+                <p>Ksh 1,400,000</p>
+                <button class="btn view-details">View Details</button>
+            </div>
+
+            <div class="vehicle-card" data-category="SUV" data-price="above2m" data-name="BMW X5" data-description="Premium German-engineered luxury SUV with powerful performance." data-img="car5.jpg,car5b.jpg,car5c.jpg">
+                <img src="car5.jpg" alt="BMW X5" />
+                <h3 class="vehicle-name">BMW X5</h3>
+                <p>Ksh 6,500,000</p>
+                <button class="btn view-details">View Details</button>
+            </div>
+
+            <div class="vehicle-card" data-category="Hatchback" data-price="below1m" data-name="Suzuki Swift" data-description="Sporty compact hatchback perfect for young drivers." data-img="car6.jpg,car6b.jpg,car6c.jpg">
+                <img src="car6.jpg" alt="Suzuki Swift" />
+                <h3 class="vehicle-name">Suzuki Swift</h3>
+                <p>Ksh 950,000</p>
+                <button class="btn view-details">View Details</button>
+            </div>
+
+            <!-- 👉 Add more cars here if needed -->
+        </div>
+    </section>
+
+    <!-- ✅ Modal -->
+    <div class="modal" id="vehicleModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div class="modal-slideshow" id="modalSlideshow"></div>
+            <div class="modal-dots" id="modalDots"></div>
+            <h2 id="modalTitle"></h2>
+            <p id="modalPrice"></p>
+            <p id="modalDescription"></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 JP AutoHub. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

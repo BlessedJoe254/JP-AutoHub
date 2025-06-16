@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - JP AutoHub</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("V0pgkRWsEf8zj3TO6"); // Your EmailJS Public Key
+        })();
+    </script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo-title">
+            <img src="logo.png" alt="JP AutoHub Logo" class="logo-img" />
+            <h1 class="site-title">JP AutoHub</h1>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="vehicles.html">Vehicles</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you. Fill out the form below to get in touch.</p>
+    </section>
+
+    <section class="contact-section">
+        <form id="contact-form" class="contact-form">
+            <input type="text" name="user_name" placeholder="Your Name" required />
+            <input type="email" name="user_email" placeholder="Your Email" required />
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+            <div id="form-status"></div>
+        </form>
+    </section>
+
+    <section class="contact-details">
+        <h2>Visit Us</h2>
+        <p>JP AutoHub Showroom, Meru University, Meru, Kenya</p>
+        <p>📞 Call us: +254 741384144</p>
+        <p>📧 Email: joemutugi291@gmail.com</p>
+
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.599073320058!2d37.622792374995226!3d0.10434746476365914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17883575c4381b27%3A0x6d70d68eb49bd9a6!2sMeru%20University%20of%20Science%20and%20Technology%20(MUST)!5e0!3m2!1sen!2ske!4v1718531045903!5m2!1sen!2ske"
+                width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+
+
+    <footer class="footer">
+        <p>&copy; 2025 JP AutoHub. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById("contact-form");
+        const status = document.getElementById("form-status");
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            status.textContent = "";
+
+            emailjs.sendForm("service_02cxlcj", "template_ppa6epi", this)
+                .then(() => {
+                    status.innerHTML = '<div class="success-message">✅ Thank you! Confirmation sent to your email.</div>';
+                    this.reset();
+                }, () => {
+                    status.innerHTML = '<div class="error-message">❌ Failed to send message. Please try again.</div>';
+                });
+        });
+    </script>
+
+</body>
+
+</html>
